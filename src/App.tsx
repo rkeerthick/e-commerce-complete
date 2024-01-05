@@ -1,14 +1,31 @@
-import React from "react";
-import { ThemeProvider, useTheme } from "@mui/material";
-import { Navbar, Products } from "./components";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { configureStore } from "@reduxjs/toolkit";
+
+import Routing from "./routes";
+import productReducer from "./store/productStore";
+// import cartReducer from "./store/cartStore";
+import { Provider } from "react-redux";
 
 const App = () => {
-  const theme = useTheme();
+  const queryClient = new QueryClient();
+
+  const store = configureStore({
+    reducer: {
+      products: productReducer,
+      // carts: cartReducer,
+    },
+  });
+
   return (
-    <ThemeProvider theme={theme}>
-      <Navbar />
-      <Products />
-    </ThemeProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <Routing />
+        </Provider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </>
   );
 };
 

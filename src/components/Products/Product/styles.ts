@@ -5,10 +5,17 @@ export const CardStyle = css`
   max-width: 100%;
 `;
 
+export const ImageContainer = styled("div")(() => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}))
+
 export const CardMediaStyle = css`
-  height: 0;
-  padding-top: 56.25%;
-  object-fit: cover;
+  align-item: center;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
 `;
 
 export const CardActionStyle = css`
@@ -18,5 +25,5 @@ export const CardActionStyle = css`
 
 export const CardContentStyled = styled("div")(() => ({
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
 }));
