@@ -2,6 +2,8 @@ import React from "react";
 import { Grid } from "@mui/material";
 import Product from "./Product/Product";
 
+import { MainStyle, ToolbarStyle } from './styles';
+
 const products = [
   {
     id: 1,
@@ -31,7 +33,8 @@ const products = [
 
 const Products = () => {
   return (
-    <main>
+    <MainStyle>
+      <ToolbarStyle />
       <Grid container justifyContent="center" spacing={4}>
         {products.map((product: any) => (
           <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
@@ -39,7 +42,7 @@ const Products = () => {
           </Grid>
         ))}
       </Grid>
-    </main>
+    </MainStyle>
   );
 };
 
