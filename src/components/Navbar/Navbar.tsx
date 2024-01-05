@@ -13,9 +13,14 @@ import { useTheme } from "@mui/material/styles";
 
 import logo from "../../assets/commerce.png";
 import {Grow, Button, imageStyle} from './styles'
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const theme = useTheme();
+  const cart = useSelector((state: any) => state.Store.cart)
+  
+  console.log(cart, 'cart-cart')
+
   return (
     <>
       <AppBar
@@ -47,12 +52,12 @@ const Navbar = () => {
               height="25px"
               className={imageStyle}
             />
-            E-Commerce
+            E-Commerce 
           </Typography>
           <Grow />
           <Button>
             <IconButton aria-label="Show cart item" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={cart?.line_items?.length} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>

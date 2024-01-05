@@ -4,8 +4,7 @@ import { commerce } from "../lib/commerce";
 import { useDispatch } from "react-redux";
 
 import { Navbar, Products } from "../components";
-import { setProducts } from "../store/productStore";
-import { setCart } from "../store/cartStore";
+import { setProducts, setCarts } from "../store/productStore";
 
 const Routing = () => {
   const dispatch = useDispatch();
@@ -24,16 +23,11 @@ const Routing = () => {
 
   const { data: cart, isLoading: cartLoading } = useQuery({
     queryKey: ["cart"],
-    queryFn: () => commerce.cart.retreive(),
+    queryFn: () => commerce.cart.retrieve(),
   });
 
   // settign cart in store
-  dispatch(setCart(cart));
-
-  const handleAddCart = async ({ productId, quantity }: any) => {
-    const response = await commerce.cart.add(productId, quantity);
-    dispatch(setCart(response.cart));
-  };
+  cart && dispatch(setCarts(cart));
 
   if (productsLoading || cartLoading || productsFetching) {
     return <h1>Loading...</h1>;
@@ -41,7 +35,7 @@ const Routing = () => {
   return (
     <>
       <Navbar />
-      <Products products={products.data} />
+      <Products />
     </>
   );
 };

@@ -2,7 +2,8 @@ import React from "react";
 import { Grid } from "@mui/material";
 import Product from "./Product/Product";
 
-import { MainStyle, ToolbarStyle } from './styles';
+import { MainStyle, ToolbarStyle } from "./styles";
+import { useSelector } from "react-redux";
 
 // const products = [
 //   {
@@ -31,11 +32,18 @@ import { MainStyle, ToolbarStyle } from './styles';
 //   },
 // ];
 
-const Products = ({products}: any) => {
+const Products = () => {
+  const products = useSelector((state: any) => state.Store.products.data);
+  console.log(products, 'products')
   return (
     <MainStyle>
       <ToolbarStyle />
-      <Grid container justifyContent="flex-start" spacing={4} sx={{width: "100%"}}>
+      <Grid
+        container
+        justifyContent="flex-start"
+        spacing={4}
+        sx={{ width: "100%" }}
+      >
         {products?.map((product: any) => (
           <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
             <Product product={product} />

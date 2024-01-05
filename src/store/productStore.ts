@@ -12,8 +12,8 @@ export const productSlice = createSlice({
     setProducts: (state: any, action: any) => {
       state.products = action.payload;
     },
-    setCarts: (state, action) => {
-      state.cart = action.payload;
+    setCarts: (state: any, action: any) => {
+      return{...state, cart: action.payload}
     },
   },
 });

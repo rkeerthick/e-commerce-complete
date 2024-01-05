@@ -12,7 +12,8 @@ const App = () => {
 
   const store = configureStore({
     reducer: {
-      products: productReducer,
+      Store: productReducer,
+      // products: productReducer,
       // carts: cartReducer,
     },
   });
