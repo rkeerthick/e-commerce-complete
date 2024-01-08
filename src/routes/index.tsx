@@ -4,7 +4,7 @@ import { commerce } from "../lib/commerce";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Navbar, Products, Cart } from "../components";
+import { Navbar, Products, Cart, Checkout } from "../components";
 import { setProducts, setCarts } from "../store/productStore";
 
 const Routing = () => {
@@ -19,7 +19,6 @@ const Routing = () => {
     queryFn: () => commerce.products.list(),
   });
 
-  // setting products in store
   dispatch(setProducts(products));
 
   const { data: cart, isLoading: cartLoading } = useQuery({
@@ -46,6 +45,9 @@ const Routing = () => {
       </Routes>
       <Routes>
         <Route path="/cart" element={<Cart />} />
+      </Routes>
+      <Routes>
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

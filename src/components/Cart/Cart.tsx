@@ -110,6 +110,7 @@ const Cart = () => {
               size="large"
               type="button"
               variant="contained"
+              onClick={() => navigate("/checkout")}
             >
               Checkout
             </CheckoutButton>
