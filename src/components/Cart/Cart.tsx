@@ -11,6 +11,7 @@ import {
   CardDetails,
   ButtonWrapper,
 } from "./styles"; // Replace with the actual file path
+import CartItem from "./CartItem/CartItem";
 
 const Cart = () => {
   const theme = useTheme();
@@ -29,9 +30,10 @@ const Cart = () => {
     return (
       <>
         <Grid container spacing={3}>
-          {cart.line_items.map((item: any, index: number) => (
-            <Grid key={index} item xs={12} sm={4}>
-              <div>{item.name}</div>
+          {cart.line_items.map((product: any) => (
+            <Grid key={product.id} item xs={12} sm={4}>
+              {/* <div>{item.name}</div> */}
+              <CartItem product={product} />
             </Grid>
           ))}
         </Grid>
@@ -68,7 +70,7 @@ const Cart = () => {
     <Container>
       <StyledToolbar theme={theme} />
       <Title theme={theme}>
-        <Typography variant="h3">Your Shopping Cart</Typography>
+        <Typography variant="h3" gutterBottom>Your Shopping Cart</Typography>
       </Title>
       {isEmpty ? <EmptyCart /> : <FilledCart />}
     </Container>
