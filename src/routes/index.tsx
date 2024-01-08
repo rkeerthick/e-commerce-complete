@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { commerce } from "../lib/commerce";
 import { useDispatch } from "react-redux";
 
-import { Navbar, Products } from "../components";
+import { Navbar, Products, Cart } from "../components";
 import { setProducts, setCarts } from "../store/productStore";
 
 const Routing = () => {
@@ -35,7 +35,8 @@ const Routing = () => {
   return (
     <>
       <Navbar />
-      <Products />
+      {/* <Products /> */}
+      <Cart />
     </>
   );
 };
