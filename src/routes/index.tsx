@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { commerce } from "../lib/commerce";
 import { useDispatch } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Navbar, Products, Cart } from "../components";
 import { setProducts, setCarts } from "../store/productStore";
@@ -33,11 +34,20 @@ const Routing = () => {
     return <h1>Loading...</h1>;
   }
   return (
-    <>
+    // <>
+    //   <Navbar />
+    //   {/* <Products /> */}
+    //   <Cart />
+    // </>
+    <BrowserRouter>
       <Navbar />
-      {/* <Products /> */}
-      <Cart />
-    </>
+      <Routes>
+        <Route path="/" element={<Products />} />
+      </Routes>
+      <Routes>
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

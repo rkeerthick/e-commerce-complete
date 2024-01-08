@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { ThemeProps } from "../../types/CommonTypes";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+
+
+export const EmptyCartLink = styled(Typography)({
+  cursor: "pointer",
+});
 
 export const StyledToolbar = styled("div")(({ theme }: ThemeProps) => ({
   ...theme.mixins.toolbar,

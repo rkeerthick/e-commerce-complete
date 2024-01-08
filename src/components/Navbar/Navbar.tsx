@@ -12,14 +12,18 @@ import { ShoppingCart } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 import logo from "../../assets/commerce.png";
-import {Grow, Button, imageStyle} from './styles'
+import { Grow, Button, imageStyle } from "./styles";
 import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const theme = useTheme();
-  const cart = useSelector((state: any) => state.Store.cart)
-  
-  console.log(cart, 'cart-cart')
+
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const cart = useSelector((state: any) => state.Store.cart);
 
   return (
     <>
@@ -44,7 +48,9 @@ const Navbar = () => {
               alignItems: "center",
               display: "flex",
               textDecoration: "none",
+              cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           >
             <img
               src={logo}
@@ -52,16 +58,22 @@ const Navbar = () => {
               height="25px"
               className={imageStyle}
             />
-            E-Commerce 
+            E-Commerce
           </Typography>
           <Grow />
-          <Button>
-            <IconButton aria-label="Show cart item" color="inherit">
-              <Badge badgeContent={cart?.line_items?.length} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </Button>
+
+          {location.pathname === "/" && (
+            <Button onClick={() => navigate("/cart")}>
+              <IconButton aria-label="Show cart item" color="inherit">
+                <Badge
+                  badgeContent={cart?.line_items?.length}
+                  color="secondary"
+                >
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </>
