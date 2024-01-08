@@ -1,0 +1,228 @@
+{
+    "id": "chkt_aZWNoyQQ4No80J",
+    "cart_id": "cart_p6dP5ggdM45n7k",
+    "currency": {
+        "code": "INR",
+        "symbol": "₹"
+    },
+    "subtotal": {
+        "raw": 334000,
+        "formatted": "334,000.00",
+        "formatted_with_symbol": "₹334,000.00",
+        "formatted_with_code": "334,000.00 INR"
+    },
+    "total": {
+        "raw": 334000,
+        "formatted": "334,000.00",
+        "formatted_with_symbol": "₹334,000.00",
+        "formatted_with_code": "334,000.00 INR"
+    },
+    "total_with_tax": {
+        "raw": 334000,
+        "formatted": "334,000.00",
+        "formatted_with_symbol": "₹334,000.00",
+        "formatted_with_code": "334,000.00 INR"
+    },
+    "giftcard": [],
+    "total_due": {
+        "raw": 334000,
+        "formatted": "334,000.00",
+        "formatted_with_symbol": "₹334,000.00",
+        "formatted_with_code": "334,000.00 INR"
+    },
+    "pay_what_you_want": {
+        "enabled": false,
+        "minimum": null,
+        "customer_set_price": null
+    },
+    "conditionals": {
+        "collects_fullname": false,
+        "collects_shipping_address": true,
+        "collects_billing_address": false,
+        "has_physical_delivery": true,
+        "has_digital_delivery": false,
+        "has_pay_what_you_want": false,
+        "has_available_discounts": false,
+        "collects_extra_fields": false,
+        "is_cart_free": false
+    },
+    "meta": null,
+    "created": 1704717411,
+    "updated": 1704717411,
+    "expires": 1705322211,
+    "collects": {
+        "fullname": false,
+        "shipping_address": true,
+        "billing_address": false,
+        "extra_fields": false
+    },
+    "has": {
+        "physical_delivery": true,
+        "digital_delivery": false,
+        "pay_what_you_want": false,
+        "available_discounts": false
+    },
+    "is": {
+        "cart_free": false
+    },
+    "line_items": [
+        {
+            "id": "item_7RyWOwmK5nEa2V",
+            "product_id": "prod_gnZO5kqXy0w7MN",
+            "name": "IPhone11",
+            "product_name": "IPhone11",
+            "sku": null,
+            "permalink": "OvlgyE",
+            "quantity": 2,
+            "price": {
+                "raw": 47000,
+                "formatted": "47,000.00",
+                "formatted_with_symbol": "₹47,000.00",
+                "formatted_with_code": "47,000.00 INR"
+            },
+            "line_total": {
+                "raw": 94000,
+                "formatted": "94,000.00",
+                "formatted_with_symbol": "₹94,000.00",
+                "formatted_with_code": "94,000.00 INR"
+            },
+            "is_valid": true,
+            "product_meta": [],
+            "selected_options": [],
+            "variant": null,
+            "image": {
+                "id": "ast_RqEv5xYdEqlZz4",
+                "url": "https://cdn.chec.io/merchants/55637/assets/9YjgC419aAB6uyUz|iphone11.webp",
+                "description": null,
+                "is_image": true,
+                "filename": "iphone11.webp",
+                "file_size": 5592,
+                "file_extension": "webp",
+                "image_dimensions": {
+                    "width": 304,
+                    "height": 416
+                },
+                "meta": [],
+                "created_at": 1704442202,
+                "updated_at": 1704442204
+            },
+            "tax": {
+                "is_taxable": false,
+                "taxable_amount": null,
+                "amount": null,
+                "breakdown": null
+            }
+        },
+        {
+            "id": "item_1ypbroE658n4ea",
+            "product_id": "prod_RyWOwmePVgwnEa",
+            "name": "Apple Macbook Pro M1",
+            "product_name": "Apple Macbook Pro M1",
+            "sku": null,
+            "permalink": "t8s4hT",
+            "quantity": 2,
+            "price": {
+                "raw": 120000,
+                "formatted": "120,000.00",
+                "formatted_with_symbol": "₹120,000.00",
+                "formatted_with_code": "120,000.00 INR"
+            },
+            "line_total": {
+                "raw": 240000,
+                "formatted": "240,000.00",
+                "formatted_with_symbol": "₹240,000.00",
+                "formatted_with_code": "240,000.00 INR"
+            },
+            "is_valid": true,
+            "product_meta": [],
+            "selected_options": [],
+            "variant": null,
+            "image": {
+                "id": "ast_ZRjywMa1Z3w7Y8",
+                "url": "https://cdn.chec.io/merchants/55637/assets/dH1nHhN9Ycc9uXyV|Apple Macbook.webp",
+                "description": null,
+                "is_image": true,
+                "filename": "Apple Macbook.webp",
+                "file_size": 4704,
+                "file_extension": "webp",
+                "image_dimensions": {
+                    "width": 416,
+                    "height": 255
+                },
+                "meta": [],
+                "created_at": 1704442551,
+                "updated_at": 1704442553
+            },
+            "tax": {
+                "is_taxable": false,
+                "taxable_amount": null,
+                "amount": null,
+                "breakdown": null
+            }
+        }
+    ],
+    "extra_fields": [],
+    "shipping": {
+        "price": {
+            "raw": 0,
+            "formatted": "0.00",
+            "formatted_with_symbol": "₹0.00",
+            "formatted_with_code": "0.00 INR"
+        }
+    },
+    "shipping_methods": [
+        {
+            "id": "ship_DWy4oGX3P56Jx2",
+            "description": "India",
+            "provider": "chec",
+            "price": {
+                "raw": 50,
+                "formatted": "50.00",
+                "formatted_with_symbol": "₹50.00",
+                "formatted_with_code": "50.00 INR"
+            }
+        }
+    ],
+    "discount": [],
+    "adjustments": {
+        "taxable": {
+            "raw": 0,
+            "formatted": "0.00",
+            "formatted_with_symbol": "₹0.00",
+            "formatted_with_code": "0.00 INR"
+        },
+        "untaxable": {
+            "raw": 0,
+            "formatted": "0.00",
+            "formatted_with_symbol": "₹0.00",
+            "formatted_with_code": "0.00 INR"
+        },
+        "total": {
+            "raw": 0,
+            "formatted": "0.00",
+            "formatted_with_symbol": "₹0.00",
+            "formatted_with_code": "0.00 INR"
+        },
+        "breakdown": []
+    },
+    "tax": {
+        "amount": {
+            "raw": 0,
+            "formatted": "0.00",
+            "formatted_with_symbol": "₹0.00",
+            "formatted_with_code": "0.00 INR"
+        },
+        "included_in_price": false,
+        "provider": "chec",
+        "breakdown": [],
+        "zone": []
+    },
+    "gateways": [
+        {
+            "id": "gway_vlKzxrMxQP7Z5b",
+            "code": "test_gateway",
+            "sandbox": true,
+            "config": []
+        }
+    ]
+}
