@@ -1,6 +1,7 @@
-import { styled, } from "@mui/material/styles";
+import styled from "styled-components";
+import { ThemeProps } from "../../types/CommonTypes";
 
-export const MainStyle = styled("main")(({ theme }: any) => ({
+export const MainStyle = styled("main")(({ theme }: ThemeProps) => ({
   width: "100%",
   boxSizing: "border-box",
   flexGrow: 1,
@@ -11,6 +12,6 @@ export const MainStyle = styled("main")(({ theme }: any) => ({
   paddingBottom: theme.spacing(3),
 }));
 
-export const ToolbarStyle = styled("div")(({theme}: any) => ({
-  background: theme.mixins.toolbar
-}))
+export const ToolbarStyle = styled("div")(({ theme }: ThemeProps) => ({
+  background: theme.mixins.toolbar,
+}));
