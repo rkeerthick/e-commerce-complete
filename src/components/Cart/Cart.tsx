@@ -28,7 +28,7 @@ const Cart = () => {
 
   const isEmpty = !cart.line_items.length;
 
-  const { mutate, isPending } = useMutation({mutationFn: async () => 
+  const { mutate, isPending: EmptyPending } = useMutation({mutationFn: async () => 
     await commerce.cart.empty(),
     onSuccess: (data) => {
       dispatch(setCarts(data));
@@ -38,6 +38,33 @@ const Cart = () => {
   const handleEmptyCart = () => {
     mutate();
   };
+
+   const { mutate: handleQuantityMutation , isPending: QuantityPending} = useMutation({
+     mutationFn: async (data: { productId: string; quantity: number }) =>
+       await commerce.cart.update(data.productId, {
+         quantity: data.quantity,
+       }),
+
+     onSuccess: (data: any) => {
+       dispatch(setCarts(data));
+     },
+   });
+
+   const { mutate: handleRemoveMutation , isPending: RemovePending} = useMutation({
+     mutationFn: async (productId: string) =>
+       await commerce.cart.remove(productId),
+     onSuccess: (data: any) => {
+       dispatch(setCarts(data));
+     },
+   });
+
+   const handleQuantity = (productId: string, quantity: number) => {
+     handleQuantityMutation({ productId, quantity });
+   };
+
+   const handleRemove = (productId: string) => {
+     handleRemoveMutation(productId);
+   };
 
 
   const EmptyCart = () => {
@@ -54,7 +81,11 @@ const Cart = () => {
         <Grid container spacing={3}>
           {cart.line_items.map((product: any) => (
             <Grid key={product.id} item xs={12} sm={4}>
-              <CartItem product={product} />
+              <CartItem
+                product={product}
+                handleRemove={handleRemove}
+                handleQuantity={handleQuantity}
+              />
             </Grid>
           ))}
         </Grid>
@@ -88,7 +119,7 @@ const Cart = () => {
     );
   };
 
-  if (isPending) {
+  if (EmptyPending || QuantityPending || RemovePending) {
     return <Container sx={{paddingTop: "80px"}}>Loading...</Container>
   }
 
@@ -100,7 +131,11 @@ const Cart = () => {
           Your Shopping Cart
         </Typography>
       </Title>
-      {isEmpty ? <EmptyCart /> : <FilledCart />}
+      {isEmpty ? (
+        <EmptyCart />
+      ) : (
+          <FilledCart/>
+      )}
     </Container>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Typography, Button } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 
 import {
   ButtonWrapper,
@@ -9,40 +9,8 @@ import {
   Image,
   ImageWrapper,
 } from "./styles";
-import { useDispatch } from "react-redux";
-import { commerce } from "../../../lib/commerce";
-import { setCarts } from "../../../store/productStore";
-import { useMutation } from "@tanstack/react-query";
 
-const CartItem = ({ product }: any) => {
-  const dispatch = useDispatch();
-
-  const handleQuantityMutation = useMutation({
-    mutationFn: async (data: { productId: string; quantity: number }) =>
-      await commerce.cart.update(data.productId, {
-        quantity: data.quantity,
-      }),
-
-    onSuccess: (data: any) => {
-      dispatch(setCarts(data));
-    },
-  });
-
-  const handleRemoveMutation = useMutation({
-    mutationFn: async (productId: string) =>
-      await commerce.cart.remove(productId),
-    onSuccess: (data: any) => {
-      dispatch(setCarts(data));
-    },
-  });
-
-  const handleQuantity = (productId: string, quantity: number) => {
-    handleQuantityMutation.mutate({ productId, quantity });
-  };
-
-  const handleRemove = (productId: string) => {
-    handleRemoveMutation.mutate(productId);
-  };
+const CartItem = ({ product, handleRemove, handleQuantity }: any) => {
 
   return (
     <CardStyled>
