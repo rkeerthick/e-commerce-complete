@@ -16,7 +16,7 @@ import { useQuery } from "@tanstack/react-query";
 const AddressForm = ({ token }: any) => {
   // const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState("");
-  const [shippingSubDivisions, setShippingSubDivisions] = useState([]);
+  // const [shippingSubDivisions, setShippingSubDivisions] = useState([]);
   const [shippingSubDivision, setShippingSubDivision] = useState("");
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState("");
@@ -33,7 +33,19 @@ const AddressForm = ({ token }: any) => {
       await commerce.services.localeListShippingCountries(token.id),
   });
 
-  // console.log(shippingCountry, "shipping country");
+  
+  const {
+    data: shippingSubDivisions,
+    isLoading: isLoadingSubDivisions,
+    isFetching: isFetchingSubDivisions,
+  } = useQuery({
+    queryKey: ["Fetch Shipping Subdivisions", shippingCountry],
+    queryFn: async () =>
+      await commerce.services.localeListSubdivisions(shippingCountry),
+    enabled: !!shippingCountry, // Enable the query only when shippingCountry is truthy
+  });
+
+  console.log(shippingSubDivisions, "shipping country");
 
   // shippingCountries && console.log(Object.entries(shippingCountries?.countries), "countries");
 

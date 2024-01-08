@@ -7,6 +7,8 @@ import productReducer from "./store/productStore";
 // import cartReducer from "./store/cartStore";
 import { Provider } from "react-redux";
 
+// import {store} from './store/store';
+
 const App = () => {
   const queryClient = new QueryClient();
 

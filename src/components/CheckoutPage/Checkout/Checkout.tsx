@@ -16,11 +16,11 @@ const Checkout = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   // const [checkoutToken, setCheckoutToken] = useState(null);
 
+  const dummy = useSelector((state: any) => state);
   const cart = useSelector((state: any) => state.Store.cart);
+  console.log(dummy, 'dummy')
 
-  const {
-    data: token,
-  } = useQuery({
+  const { data: token } = useQuery({
     queryKey: ["Token"],
     queryFn: async () =>
       await commerce.checkout.generateToken(cart.id, {
@@ -30,7 +30,12 @@ const Checkout = () => {
 
   console.log(token, "token");
 
-  const Form = () => (activeStep === 0 ? <AddressForm token={token} /> : <PaymentForm token={token} />);
+  const Form = () =>
+    activeStep === 0 ? (
+      <AddressForm token={token} />
+    ) : (
+      <PaymentForm token={token} />
+    );
 
   const Confirmation = () => <div>Confirmation</div>;
 
