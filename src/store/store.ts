@@ -3,8 +3,8 @@ import productStore from "./productStore";
 import cartStore from "./cartStore";
 
 const reducers = combineReducers({
-    productStore: productStore,
-    cartStore: cartStore,
+    product: productStore,
+    cart: cartStore,
 });
 
 export const store = createStore(reducers);

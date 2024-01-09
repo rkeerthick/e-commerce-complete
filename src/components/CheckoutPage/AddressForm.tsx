@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   InputLabel,
   Select,
@@ -23,17 +23,18 @@ const AddressForm = ({ token }: any) => {
 
   const method = useForm();
 
+  console.log(token, "token");
   const {
     data: shippingCountries,
     isLoading,
     isFetching,
+    error,
   } = useQuery({
     queryKey: ["Fetch Shipping Countries"],
-    queryFn: async () =>
-      await commerce.services.localeListShippingCountries(token.id),
+    queryFn: () =>
+      commerce.services.localeListShippingCountries(token.id),
   });
 
-  
   const {
     data: shippingSubDivisions,
     isLoading: isLoadingSubDivisions,
@@ -42,10 +43,12 @@ const AddressForm = ({ token }: any) => {
     queryKey: ["Fetch Shipping Subdivisions", shippingCountry],
     queryFn: async () =>
       await commerce.services.localeListSubdivisions(shippingCountry),
-    enabled: !!shippingCountry, // Enable the query only when shippingCountry is truthy
+    enabled: !!shippingCountry,
   });
 
-  console.log(shippingSubDivisions, "shipping country");
+  console.log(shippingCountries, "shipping country");
+  console.log(shippingSubDivisions, "shipping subdivisions");
+  console.log(error, "error");
 
   // shippingCountries && console.log(Object.entries(shippingCountries?.countries), "countries");
 

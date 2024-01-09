@@ -23,7 +23,11 @@ const Navbar = () => {
 
   const location = useLocation();
 
+  const dummy = useSelector((state: any) => state);
+
   const cart = useSelector((state: any) => state.Store.cart);
+
+  console.log(dummy, 'dummy')
 
   return (
     <>
