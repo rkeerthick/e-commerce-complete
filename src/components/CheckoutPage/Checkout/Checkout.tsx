@@ -13,14 +13,18 @@ const steps = ["Shipping address", "Payment details"];
 
 const Checkout = () => {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState<number>(0);
-  // const [checkoutToken, setCheckoutToken] = useState(null);
+  const [activeStep, setActiveStep] = useState<number>(1);
+  const [shippingData, setShippingData] = useState({});
 
   const dummy = useSelector((state: any) => state);
   const cart = useSelector((state: any) => state.Store.cart);
   console.log(dummy, "dummy");
 
-  const { data: token, isFetching, isLoading } = useQuery({
+  const {
+    data: token,
+    isFetching,
+    isLoading,
+  } = useQuery({
     queryKey: ["Token"],
     queryFn: async () =>
       await commerce.checkout.generateToken(cart.id, {
@@ -28,16 +32,21 @@ const Checkout = () => {
       }),
   });
 
+  const nextStep = () => setActiveStep((oldStep: number) => oldStep + 1);
+  const prevStep = () => setActiveStep((oldStep: number) => oldStep - 1);
+
+  const next = (data: any) => {
+    setShippingData(data);
+    nextStep();
+  };
+
   if (isFetching || isLoading) {
-    return <>Loading....</>
+    return <>Loading....</>;
   }
 
-  console.log(token, "token");
-
   const Form = () => {
-    console.log(activeStep, "activestep");
     return activeStep === 0 ? (
-      <AddressForm token={token} />
+      <AddressForm token={token} next={next} />
     ) : (
       <PaymentForm token={token} />
     );

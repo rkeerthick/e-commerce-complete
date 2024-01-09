@@ -12,47 +12,70 @@ import { useForm, FormProvider } from "react-hook-form";
 import TextFeild from "./TextFeild";
 import { commerce } from "../../lib/commerce";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
-const AddressForm = ({ token }: any) => {
-  // const [shippingCountries, setShippingCountries] = useState([]);
+const AddressForm = ({ token, next }: any) => {
   const [shippingCountry, setShippingCountry] = useState("");
-  // const [shippingSubDivisions, setShippingSubDivisions] = useState([]);
   const [shippingSubDivision, setShippingSubDivision] = useState("");
-  const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState("");
+
+  const navigate = useNavigate();
 
   const method = useForm();
 
-  console.log(token, "token");
   const {
     data: shippingCountries,
-    isLoading,
-    isFetching,
-    error,
+    isLoading: shippingCountriesLoading,
+    isFetching: shippingCountriesFetching,
   } = useQuery({
     queryKey: ["Fetch Shipping Countries"],
-    queryFn: () =>
-      commerce.services.localeListShippingCountries(token.id),
+    queryFn: () => commerce.services.localeListShippingCountries(token.id),
   });
 
   const {
     data: shippingSubDivisions,
-    isLoading: isLoadingSubDivisions,
-    isFetching: isFetchingSubDivisions,
+    isLoading: shippingSubDivisionsLoading,
+    isFetching: shippingSubDivisionsFetching,
   } = useQuery({
     queryKey: ["Fetch Shipping Subdivisions", shippingCountry],
-    queryFn: async () =>
-      await commerce.services.localeListSubdivisions(shippingCountry),
+    queryFn: () => commerce.services.localeListSubdivisions(shippingCountry),
     enabled: !!shippingCountry,
   });
 
-  console.log(shippingCountries, "shipping country");
-  console.log(shippingSubDivisions, "shipping subdivisions");
-  console.log(error, "error");
+  const {
+    data: shippingOptions,
+    isLoading: shippingOptionsLoading,
+    isFetching: shippingOptionsFetching,
+    refetch: refetchShippingOptions,
+  } = useQuery({
+    queryKey: ["Payment Option"],
+    queryFn: () =>
+      commerce.checkout.getShippingOptions(token.id, {
+        country: shippingCountry,
+        region: shippingSubDivision,
+      }),
+    enabled: !!shippingSubDivision,
+  });
 
-  // shippingCountries && console.log(Object.entries(shippingCountries?.countries), "countries");
+  useEffect(() => {
+    if (shippingSubDivision) {
+      refetchShippingOptions();
+    }
+  }, [shippingSubDivision, refetchShippingOptions]);
 
-  if (isLoading || isFetching) {
+  const options = shippingOptions?.map((data: any) => ({
+    id: data.id,
+    label: `${data.description} - (${data.price.formatted_with_symbol})`,
+  }));
+
+  if (
+    shippingCountriesLoading ||
+    shippingCountriesFetching ||
+    shippingOptionsLoading ||
+    shippingOptionsFetching ||
+    shippingSubDivisionsLoading ||
+    shippingSubDivisionsFetching
+  ) {
     return <>Loading..</>;
   }
 
@@ -62,7 +85,16 @@ const AddressForm = ({ token }: any) => {
         Shipping Address
       </Typography>
       <FormProvider {...method}>
-        <form>
+        <form
+          onSubmit={method.handleSubmit((data) =>
+            next({
+              ...data,
+              shippingCountry,
+              shippingOption,
+              shippingSubDivision,
+            })
+          )}
+        >
           <Grid container spacing={3}>
             <TextFeild requird={true} name="firstName" label="First Name" />
             <TextFeild requird={true} name="lastName" label="Last Name" />
@@ -77,7 +109,6 @@ const AddressForm = ({ token }: any) => {
                 value={shippingCountry}
                 onChange={(e: any) => {
                   setShippingCountry(e.target.value);
-                  console.log(e.target.value);
                 }}
               >
                 {shippingCountries &&
@@ -90,23 +121,50 @@ const AddressForm = ({ token }: any) => {
                   )}
               </Select>
             </Grid>
-            {/* <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Subdivision</InputLabel>
-              <Select fullWidth value={} onChange={}>
-                <MenuItem key={} value={}>
-                  Select me
-                </MenuItem>
+              <Select
+                fullWidth
+                value={shippingSubDivision}
+                onChange={(e: any) => {
+                  setShippingSubDivision(e.target.value);
+                }}
+                disabled={shippingSubDivisions === undefined ? true : false}
+              >
+                {shippingSubDivisions &&
+                  Object.entries(shippingSubDivisions.subdivisions).map(
+                    ([code, name]: any) => (
+                      <MenuItem key={code} value={code}>
+                        {name}
+                      </MenuItem>
+                    )
+                  )}
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Option</InputLabel>
-              <Select fullWidth value={} onChange={}>
-                <MenuItem key={} value={}>
-                  Select me
-                </MenuItem>
+              <Select
+                fullWidth
+                value={shippingOption}
+                onChange={(e: any) => setShippingOption(e.target.value)}
+                disabled={shippingOptions === undefined ? true : false}
+              >
+                {options &&
+                  options?.map((option: any) => (
+                    <MenuItem key={option.id} value={option.id}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
               </Select>
-            </Grid> */}
+            </Grid>
           </Grid>
+          <br />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Button variant="outlined" onClick={() => navigate('/cart')}>Back to cart</Button>
+            <Button type="submit" color="primary" variant="contained">
+              Next
+            </Button>
+          </div>
         </form>
       </FormProvider>
     </>
