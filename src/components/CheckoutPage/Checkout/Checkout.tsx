@@ -13,7 +13,7 @@ const steps = ["Shipping address", "Payment details"];
 
 const Checkout = () => {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState<number>(1);
+  const [activeStep, setActiveStep] = useState<number>(0);
   const [shippingData, setShippingData] = useState({});
 
   const dummy = useSelector((state: any) => state);
@@ -48,7 +48,7 @@ const Checkout = () => {
     return activeStep === 0 ? (
       <AddressForm token={token} next={next} />
     ) : (
-      <PaymentForm token={token} />
+      <PaymentForm token={token} shippingData={shippingData} />
     );
   };
 
