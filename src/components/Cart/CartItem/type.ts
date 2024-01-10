@@ -1,4 +1,11 @@
-export interface ProductsType {
+export interface CartItemPropType {
+  product: CartItemType;
+  handleRemove: (productId: string) => void;
+  handleQuantity: (productId: string, quantity: number) => void;
+}
+
+
+export interface CartItemType {
   id: string;
   product_id: string;
   name: string;

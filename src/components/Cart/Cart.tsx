@@ -10,12 +10,15 @@ import {
   CardDetails,
   ButtonWrapper,
   EmptyCartLink,
-} from "./styles"; // Replace with the actual file path
+} from "./styles";
 import CartItem from "./CartItem/CartItem";
 import { commerce } from "../../lib/commerce";
 import { setCarts } from "../../store/productStore";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
+import { CartType } from "./type";
+import { StateType } from "../../types/CommonTypes";
+import { CartItemType } from "./CartItem/type";
 
 const Cart = () => {
   const theme = useTheme();
@@ -24,9 +27,11 @@ const Cart = () => {
 
   const navigate = useNavigate();
 
-  const cart = useSelector((state: any) => state.Store.cart);
+  const cart: CartType | undefined = useSelector(
+    (state: StateType) => state.Store.cart
+  );
 
-  const isEmpty = !cart || !cart.line_items.length;
+  const isEmpty: boolean = !cart || !cart?.line_items.length;
 
   const { mutate, isPending: EmptyPending } = useMutation({
     mutationFn: async () => await commerce.cart.empty(),
@@ -46,7 +51,7 @@ const Cart = () => {
           quantity: data.quantity,
         }),
 
-      onSuccess: (data: any) => {
+      onSuccess: (data) => {
         dispatch(setCarts(data));
       },
     });
@@ -55,7 +60,7 @@ const Cart = () => {
     useMutation({
       mutationFn: async (productId: string) =>
         await commerce.cart.remove(productId),
-      onSuccess: (data: any) => {
+      onSuccess: (data) => {
         dispatch(setCarts(data));
       },
     });
@@ -67,6 +72,10 @@ const Cart = () => {
   const handleRemove = (productId: string) => {
     handleRemoveMutation(productId);
   };
+
+  if (cart === undefined || EmptyPending || QuantityPending || RemovePending) {
+    return <Container sx={{ paddingTop: "80px" }}>Loading...</Container>;
+  }
 
   const EmptyCart = () => {
     return (
@@ -80,14 +89,17 @@ const Cart = () => {
     return (
       <>
         <Grid container spacing={3}>
-          {cart.line_items.map((product: any) => (
-            <Grid key={product.id} item xs={12} sm={4}>
-              <CartItem
-                product={product}
-                handleRemove={handleRemove}
-                handleQuantity={handleQuantity}
-              />
-            </Grid>
+          {cart.line_items.map((product: CartItemType) => (
+            <>
+              {console.log(product, "cart item")}
+              <Grid key={product.id} item xs={12} sm={4}>
+                <CartItem
+                  product={product}
+                  handleRemove={handleRemove}
+                  handleQuantity={handleQuantity}
+                />
+              </Grid>
+            </>
           ))}
         </Grid>
         <CardDetails theme={theme}>
@@ -120,10 +132,6 @@ const Cart = () => {
       </>
     );
   };
-
-  if (EmptyPending || QuantityPending || RemovePending) {
-    return <Container sx={{ paddingTop: "80px" }}>Loading...</Container>;
-  }
 
   return (
     <Container>

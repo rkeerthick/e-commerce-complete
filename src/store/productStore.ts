@@ -1,13 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CartType } from "../types/Cart.type";
-import { ProductsType } from "../components/Products/type";
+import { ProductStoreProps } from "../types/CommonTypes";
 
-interface productStoreProps {
-  products: ProductsType[];
-  cart: CartType | {};
-}
-
-const initialState: productStoreProps = {
+const initialState: ProductStoreProps = {
   products: [],
   cart: {},
 };

@@ -9,9 +9,13 @@ import {
   Image,
   ImageWrapper,
 } from "./styles";
+import { CartItemPropType } from "./type";
 
-const CartItem = ({ product, handleRemove, handleQuantity }: any) => {
-
+const CartItem = ({
+  product,
+  handleRemove,
+  handleQuantity,
+}: CartItemPropType) => {
   return (
     <CardStyled>
       <ImageWrapper>

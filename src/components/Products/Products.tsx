@@ -13,6 +13,8 @@ const Products = () => {
     (state: any) => state.Store.products.data
   );
 
+  
+
   return (
     <MainStyle theme={theme}>
       <ToolbarStyle theme={theme} />
