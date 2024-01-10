@@ -91,7 +91,6 @@ const Cart = () => {
         <Grid container spacing={3}>
           {cart.line_items.map((product: CartItemType) => (
             <>
-              {console.log(product, "cart item")}
               <Grid key={product.id} item xs={12} sm={4}>
                 <CartItem
                   product={product}

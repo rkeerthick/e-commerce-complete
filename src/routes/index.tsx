@@ -21,9 +21,7 @@ const Routing = () => {
   });
 
   dispatch(setProducts(products));
-
-  console.log(products, 'prod')
-
+  
   const { data: cart, isLoading: cartLoading } = useQuery({
     queryKey: ["cart"],
     queryFn: () => commerce.cart.retrieve(),

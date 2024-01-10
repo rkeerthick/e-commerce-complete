@@ -37,11 +37,7 @@ const Checkout = () => {
 
   const dispatch = useDispatch();
 
-  const dummy = useSelector((state: any) => state);
   const cart = useSelector((state: any) => state.Store.cart);
-
-  console.log(order, "order");
-  console.log(dummy, "dummy");
 
   const {
     data: token,

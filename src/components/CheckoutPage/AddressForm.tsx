@@ -96,12 +96,12 @@ const AddressForm = ({ token, next }: any) => {
           )}
         >
           <Grid container spacing={3}>
-            <TextFeild requird={true} name="firstName" label="First Name" />
-            <TextFeild requird={true} name="lastName" label="Last Name" />
-            <TextFeild requird={true} name="address" label="Address" />
-            <TextFeild requird={true} name="email" label="Email" />
-            <TextFeild requird={true} name="city" label="City" />
-            <TextFeild requird={true} name="zip" label="Zip / Postal Code" />
+            <TextFeild required={true} name="firstName" label="First Name" />
+            <TextFeild required={true} name="lastName" label="Last Name" />
+            <TextFeild required={true} name="address" label="Address" />
+            <TextFeild required={true} name="email" label="Email" />
+            <TextFeild required={true} name="city" label="City" />
+            <TextFeild required={true} name="zip" label="Zip / Postal Code" />
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select

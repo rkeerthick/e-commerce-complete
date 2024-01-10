@@ -19,7 +19,6 @@ const PaymentForm = ({
   handleCaptureCheckout,
   nextStep,
 }: any) => {
-  console.log(shippingData, "shippingData");
   const handleSubmit = async (e: any, elements: any, stripe: any) => {
     e.preventDefault();
 
@@ -74,7 +73,7 @@ const PaymentForm = ({
 
   return (
     <>
-      <Review token={token} />
+      <Review CheckoutProducts={token} />
       <Divider />
       <Typography variant="h6" gutterBottom style={{ margin: "20px 0" }}>
         Payment Method
