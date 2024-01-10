@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   InputLabel,
   Select,
@@ -14,8 +14,12 @@ import TextFeild from "./TextFeild";
 import { commerce } from "../../lib/commerce";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { AddressFormPropType, CountryCodeType, OptionType, ShippingOption } from "./type";
-import { ShippingDataType } from "./Checkout/type";
+import {
+  AddressFormPropType,
+  CountryCodeType,
+  OptionType,
+  ShippingOption,
+} from "./type";
 
 const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
   const [shippingCountry, setShippingCountry] = useState<string>("");

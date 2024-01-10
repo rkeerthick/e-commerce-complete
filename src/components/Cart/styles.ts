@@ -36,7 +36,7 @@ export const CardDetails = styled("div")(({ theme }) => ({
   display: "flex",
   marginTop: theme.spacing(10),
   width: "100%",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
 }));
 
