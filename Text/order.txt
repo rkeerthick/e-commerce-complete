@@ -1,0 +1,428 @@
+    {
+        "version": "v1.5",
+        "sandbox": true,
+        "id": "ord_RqEv5xk74doZz4",
+        "checkout_token_id": "chkt_G6kVw76x7Vl2eD",
+        "cart_id": "cart_L1vOoZ3Bmg5Ra8",
+        "customer_reference": "KRTHCK-278659",
+        "created": 1704862228,
+        "status": "open",
+        "status_payment": "paid",
+        "status_fulfillment": "not_fulfilled",
+        "currency": {
+            "code": "INR",
+            "symbol": "₹"
+        },
+        "order_value": {
+            "raw": 47650,
+            "formatted": "47,650.00",
+            "formatted_with_symbol": "₹47,650.00",
+            "formatted_with_code": "47,650.00 INR"
+        },
+        "conditionals": {
+            "collected_fullname": false,
+            "collected_shipping_address": true,
+            "collected_billing_address": false,
+            "collected_extra_fields": false,
+            "collected_tax": false,
+            "collected_eu_vat_moss_evidence": false,
+            "has_physical_fulfillment": true,
+            "has_digital_fulfillment": null,
+            "has_extend_fulfillment": false,
+            "has_webhook_fulfillment": false,
+            "has_extend_apps": false,
+            "has_pay_what_you_want": false,
+            "has_discounts": false,
+            "has_subscription_items": false,
+            "is_free": false,
+            "is_fulfilled": false
+        },
+        "meta": null,
+        "redirect": false,
+        "collected": {
+            "fullname": false,
+            "shipping_address": true,
+            "billing_address": false,
+            "extra_fields": false,
+            "tax": false,
+            "eu_vat_moss_evidence": false
+        },
+        "has": {
+            "physical_fulfillment": true,
+            "digital_fulfillment": false,
+            "extend_fulfillment": false,
+            "webhook_fulfillment": false,
+            "extend_apps": false,
+            "pay_what_you_want": false,
+            "discounts": false,
+            "subscription_items": false
+        },
+        "is": {
+            "free": false,
+            "fulfilled": false
+        },
+        "order": {
+            "subtotal": {
+                "raw": 47600,
+                "formatted": "47,600.00",
+                "formatted_with_symbol": "₹47,600.00",
+                "formatted_with_code": "47,600.00 INR"
+            },
+            "total": {
+                "raw": 47650,
+                "formatted": "47,650.00",
+                "formatted_with_symbol": "₹47,650.00",
+                "formatted_with_code": "47,650.00 INR"
+            },
+            "total_with_tax": {
+                "raw": 47650,
+                "formatted": "47,650.00",
+                "formatted_with_symbol": "₹47,650.00",
+                "formatted_with_code": "47,650.00 INR"
+            },
+            "total_paid": {
+                "raw": 47650,
+                "formatted": "47,650.00",
+                "formatted_with_symbol": "₹47,650.00",
+                "formatted_with_code": "47,650.00 INR"
+            },
+            "adjustments": {
+                "taxable": {
+                    "raw": 0,
+                    "formatted": "0.00",
+                    "formatted_with_symbol": "₹0.00",
+                    "formatted_with_code": "0.00 INR"
+                },
+                "untaxable": {
+                    "raw": 0,
+                    "formatted": "0.00",
+                    "formatted_with_symbol": "₹0.00",
+                    "formatted_with_code": "0.00 INR"
+                },
+                "total": {
+                    "raw": 0,
+                    "formatted": "0.00",
+                    "formatted_with_symbol": "₹0.00",
+                    "formatted_with_code": "0.00 INR"
+                }
+            },
+            "pay_what_you_want": {
+                "enabled": false,
+                "minimum": null,
+                "customer_set_price": null
+            },
+            "shipping": {
+                "id": "ship_DWy4oGX3P56Jx2",
+                "description": "India",
+                "provider": "chec",
+                "price": {
+                    "raw": 50,
+                    "formatted": "50.00",
+                    "formatted_with_symbol": "₹50.00",
+                    "formatted_with_code": "50.00 INR"
+                }
+            },
+            "line_items": [
+                {
+                    "id": "item_8XxzoBKOVO5PQA",
+                    "product_id": "prod_bWZ3l8axr1wkpE",
+                    "product_name": "Keyboard",
+                    "product_sku": null,
+                    "quantity": 1,
+                    "price": {
+                        "raw": 600,
+                        "formatted": "600.00",
+                        "formatted_with_symbol": "₹600.00",
+                        "formatted_with_code": "600.00 INR"
+                    },
+                    "line_total": {
+                        "raw": 600,
+                        "formatted": "600.00",
+                        "formatted_with_symbol": "₹600.00",
+                        "formatted_with_code": "600.00 INR"
+                    },
+                    "line_total_with_tax": {
+                        "raw": 600,
+                        "formatted": "600.00",
+                        "formatted_with_symbol": "₹600.00",
+                        "formatted_with_code": "600.00 INR"
+                    },
+                    "variant": [],
+                    "selected_options": [],
+                    "tax": {
+                        "is_taxable": false,
+                        "amount": {
+                            "raw": 0,
+                            "formatted": "0.00",
+                            "formatted_with_symbol": "₹0.00",
+                            "formatted_with_code": "0.00 INR"
+                        },
+                        "taxable_amount": {
+                            "raw": 600,
+                            "formatted": "600.00",
+                            "formatted_with_symbol": "₹600.00",
+                            "formatted_with_code": "600.00 INR"
+                        },
+                        "rate": 0,
+                        "rate_percentage": "0%",
+                        "breakdown": []
+                    },
+                    "image": {
+                        "id": "ast_4WJvlKAVDeobYV",
+                        "url": "https://cdn.chec.io/merchants/55637/assets/fda7Tsw7RWzNByRV|keyboard.webp",
+                        "description": null,
+                        "is_image": true,
+                        "filename": "keyboard.webp",
+                        "file_size": 8248,
+                        "file_extension": "webp",
+                        "image_dimensions": {
+                            "width": 416,
+                            "height": 143
+                        },
+                        "meta": [],
+                        "created_at": 1704438199,
+                        "updated_at": 1704438202
+                    }
+                },
+                {
+                    "id": "item_VKXmwD4OLnwrgD",
+                    "product_id": "prod_gnZO5kqXy0w7MN",
+                    "product_name": "IPhone11",
+                    "product_sku": null,
+                    "quantity": 1,
+                    "price": {
+                        "raw": 47000,
+                        "formatted": "47,000.00",
+                        "formatted_with_symbol": "₹47,000.00",
+                        "formatted_with_code": "47,000.00 INR"
+                    },
+                    "line_total": {
+                        "raw": 47000,
+                        "formatted": "47,000.00",
+                        "formatted_with_symbol": "₹47,000.00",
+                        "formatted_with_code": "47,000.00 INR"
+                    },
+                    "line_total_with_tax": {
+                        "raw": 47000,
+                        "formatted": "47,000.00",
+                        "formatted_with_symbol": "₹47,000.00",
+                        "formatted_with_code": "47,000.00 INR"
+                    },
+                    "variant": [],
+                    "selected_options": [],
+                    "tax": {
+                        "is_taxable": false,
+                        "amount": {
+                            "raw": 0,
+                            "formatted": "0.00",
+                            "formatted_with_symbol": "₹0.00",
+                            "formatted_with_code": "0.00 INR"
+                        },
+                        "taxable_amount": {
+                            "raw": 47000,
+                            "formatted": "47,000.00",
+                            "formatted_with_symbol": "₹47,000.00",
+                            "formatted_with_code": "47,000.00 INR"
+                        },
+                        "rate": 0,
+                        "rate_percentage": "0%",
+                        "breakdown": []
+                    },
+                    "image": {
+                        "id": "ast_RqEv5xYdEqlZz4",
+                        "url": "https://cdn.chec.io/merchants/55637/assets/9YjgC419aAB6uyUz|iphone11.webp",
+                        "description": null,
+                        "is_image": true,
+                        "filename": "iphone11.webp",
+                        "file_size": 5592,
+                        "file_extension": "webp",
+                        "image_dimensions": {
+                            "width": 304,
+                            "height": 416
+                        },
+                        "meta": [],
+                        "created_at": 1704442202,
+                        "updated_at": 1704442204
+                    }
+                }
+            ],
+            "discount": [],
+            "giftcard": []
+        },
+        "shipping": {
+            "id": "adrs_O3bR5XM1Glnzdj",
+            "name": "Primary",
+            "street": "akjdl",
+            "street_2": null,
+            "town_city": "akdjal",
+            "postal_zip_code": "943789",
+            "county_state": "TN",
+            "country": "IN",
+            "delivery_instructions": null,
+            "meta": null
+        },
+        "billing": [],
+        "transactions": [
+            {
+                "id": "trns_p6dP5g74WW5n7k",
+                "type": "charge",
+                "status": "complete",
+                "status_reason": "complete",
+                "charge_date": 1704862228,
+                "gateway": "test_gateway",
+                "gateway_name": "Test Gateway",
+                "gateway_transaction_id": "1704862228",
+                "gateway_customer_id": null,
+                "gateway_reference": "4242",
+                "notes": "",
+                "amount": {
+                    "raw": 47650,
+                    "formatted": "47,650.00",
+                    "formatted_with_symbol": "₹47,650.00",
+                    "formatted_with_code": "47,650.00 INR"
+                },
+                "payment_source_type": "card",
+                "payment_source": {
+                    "brand": "visa",
+                    "country": "US",
+                    "billing_zip_postal_code": "94103"
+                },
+                "meta": null,
+                "created": 1704862228,
+                "updated": 1704862228,
+                "dunning": {
+                    "is_dunning": false,
+                    "failed_attempts": 0,
+                    "last_failed_attempt": null,
+                    "next_attempt": null
+                }
+            }
+        ],
+        "fulfillment": {
+            "physical": {
+                "items": [
+                    {
+                        "id": "ful_RqEv5xz319wZz4",
+                        "shipping_method_id": "ship_DWy4oGX3P56Jx2",
+                        "line_item_id": "item_8XxzoBKOVO5PQA",
+                        "product_id": "prod_bWZ3l8axr1wkpE",
+                        "shipping_description": "India",
+                        "provider": "chec",
+                        "provider_type": "native_shipping",
+                        "product_name": "Keyboard",
+                        "status": "not_fulfilled",
+                        "quantity": {
+                            "total": 1,
+                            "fulfilled": 0,
+                            "remaining": 1
+                        },
+                        "quantity_fulfilled": 0,
+                        "quantity_remaining": 1,
+                        "last_updated": 1704862228,
+                        "linked_shipments": [],
+                        "selected_options": []
+                    },
+                    {
+                        "id": "ful_8XxzoBqnvVwPQA",
+                        "shipping_method_id": "ship_DWy4oGX3P56Jx2",
+                        "line_item_id": "item_VKXmwD4OLnwrgD",
+                        "product_id": "prod_gnZO5kqXy0w7MN",
+                        "shipping_description": "India",
+                        "provider": "chec",
+                        "provider_type": "native_shipping",
+                        "product_name": "IPhone11",
+                        "status": "not_fulfilled",
+                        "quantity": {
+                            "total": 1,
+                            "fulfilled": 0,
+                            "remaining": 1
+                        },
+                        "quantity_fulfilled": 0,
+                        "quantity_remaining": 1,
+                        "last_updated": 1704862228,
+                        "linked_shipments": [],
+                        "selected_options": []
+                    }
+                ],
+                "shipments": []
+            },
+            "digital": {
+                "downloads": []
+            }
+        },
+        "customer": {
+            "id": "cstmr_aZWNoyvzBY580J",
+            "external_id": null,
+            "firstname": null,
+            "lastname": null,
+            "email": "skld@mail.com",
+            "phone": null,
+            "meta": [],
+            "created": 1704862228,
+            "updated": 1704862228
+        },
+        "extra_fields": [],
+        "client_details": {
+            "ip_address": "106.51.80.105",
+            "country_code": "IN",
+            "country_name": "India",
+            "region_code": "KA",
+            "region_name": "Karnataka",
+            "city": "Bengaluru",
+            "postal_zip_code": "560002",
+            "_copyright": "This location was calculated using GeoLite2 data created by MaxMind - http://www.maxmind.com"
+        },
+        "tax": {
+            "amount": {
+                "raw": 0,
+                "formatted": "0.00",
+                "formatted_with_symbol": "₹0.00",
+                "formatted_with_code": "0.00 INR"
+            },
+            "included_in_price": false,
+            "provider": "chec",
+            "provider_type": "native",
+            "breakdown": [],
+            "zone": {
+                "country": "IN",
+                "region": "TN",
+                "postal_zip_code": "943789",
+                "ip_address": null
+            }
+        },
+        "adjustments": [],
+        "merchant": {
+            "id": 55637,
+            "name": "Keerthick",
+            "description": "",
+            "status": "active",
+            "country": "US",
+            "currency": {
+                "symbol": "₹",
+                "code": "INR"
+            },
+            "has": {
+                "logo": false,
+                "cover": false,
+                "analytics": false,
+                "description": false,
+                "enabled_hosted_checkouts": true,
+                "enabled_hosted_storefront": true
+            },
+            "support_email": "rkeerthick1@gmail.com",
+            "logo_shape": null,
+            "intercom": true,
+            "analytics": {
+                "google": {
+                    "settings": {
+                        "tracking_id": null,
+                        "linked_domains": []
+                    }
+                }
+            },
+            "images": {
+                "logo": null,
+                "cover": null
+            }
+        }
+    }

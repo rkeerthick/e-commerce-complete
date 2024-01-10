@@ -33,11 +33,6 @@ const Routing = () => {
     return <h1>Loading...</h1>;
   }
   return (
-    // <>
-    //   <Navbar />
-    //   {/* <Products /> */}
-    //   <Cart />
-    // </>
     <BrowserRouter>
       <Navbar />
       <Routes>
