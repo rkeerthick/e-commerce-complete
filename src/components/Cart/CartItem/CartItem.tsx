@@ -19,7 +19,7 @@ const CartItem = ({ product, handleRemove, handleQuantity }: any) => {
       </ImageWrapper>
       <CardContentStyled>
         <Typography variant="h6">{product.name}</Typography>
-        <Typography variant="h5">
+        <Typography variant="h6">
           {product.line_total.formatted_with_symbol}
         </Typography>
       </CardContentStyled>

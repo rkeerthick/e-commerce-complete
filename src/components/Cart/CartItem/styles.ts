@@ -2,23 +2,22 @@ import styled from "styled-components";
 import { Card, CardActions, CardContent } from "@mui/material";
 
 export const CardStyled = styled(Card)({
-    height: "400px",
+    height: "max-content",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-evenly"
 })
 
 export const ImageWrapper = styled.div({
     display: "flex",
     justifyContent: "center",
-    height: "260",
+    height: "260px",
     width: "100%",
     objectFit: "cover"
 });
 
 export const Image = styled.img({
-    height: "150px",
-    width: "auto",
+    width: "250px",
+    height: "auto",
     objectFit: "contain",
 })
 

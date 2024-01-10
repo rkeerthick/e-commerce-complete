@@ -26,7 +26,7 @@ const Cart = () => {
 
   const cart = useSelector((state: any) => state.Store.cart);
 
-  const isEmpty = !cart.line_items.length;
+  const isEmpty = !cart || !cart.line_items.length;
 
   const { mutate, isPending: EmptyPending } = useMutation({mutationFn: async () => 
     await commerce.cart.empty(),
@@ -90,7 +90,7 @@ const Cart = () => {
           ))}
         </Grid>
         <CardDetails theme={theme}>
-          <Typography variant="h4">
+          <Typography variant="h5">
             Subtotal: {cart.subtotal.formatted_with_symbol}
           </Typography>
           <ButtonWrapper>
@@ -128,7 +128,7 @@ const Cart = () => {
     <Container>
       <StyledToolbar theme={theme} />
       <Title theme={theme}>
-        <Typography variant="h3" gutterBottom>
+        <Typography variant="h4" gutterBottom>
           Your Shopping Cart
         </Typography>
       </Title>

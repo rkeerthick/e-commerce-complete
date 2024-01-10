@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { ThemeProps } from "../../types/CommonTypes";
 import { Button, Typography } from "@mui/material";
 
-
 export const EmptyCartLink = styled(Typography)({
   cursor: "pointer",
 });
@@ -37,11 +36,13 @@ export const CardDetails = styled("div")(({ theme }) => ({
   display: "flex",
   marginTop: theme.spacing(10),
   width: "100%",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "center",
 }));
 
 export const ButtonWrapper = styled("div")(() => ({
-    display: "flex",
-    gap: "10px",
-}))
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  gap: "10px",
+}));

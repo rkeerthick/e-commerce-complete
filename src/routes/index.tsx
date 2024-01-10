@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Navbar, Products, Cart, Checkout } from "../components";
 import { setProducts, setCarts } from "../store/productStore";
+import Flash from "../components/Flash/Flash";
 
 const Routing = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Routing = () => {
   cart && dispatch(setCarts(cart));
 
   if (productsLoading || cartLoading || productsFetching) {
-    return <h1>Loading...</h1>;
+    return <Flash />;
   }
   return (
     <BrowserRouter>
