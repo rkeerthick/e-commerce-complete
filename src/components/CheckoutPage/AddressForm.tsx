@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import {
   InputLabel,
   Select,
@@ -6,6 +6,7 @@ import {
   Button,
   Grid,
   Typography,
+  SelectChangeEvent,
 } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 
@@ -13,7 +14,8 @@ import TextFeild from "./TextFeild";
 import { commerce } from "../../lib/commerce";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { AddressFormPropType } from "./type";
+import { AddressFormPropType, CountryCodeType, OptionType, ShippingOption } from "./type";
+import { ShippingDataType } from "./Checkout/type";
 
 const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
   const [shippingCountry, setShippingCountry] = useState<string>("");
@@ -65,10 +67,12 @@ const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
     }
   }, [shippingSubDivision, refetchShippingOptions]);
 
-  const options = shippingOptions?.map((data: any) => ({
-    id: data.id,
-    label: `${data.description} - (${data.price.formatted_with_symbol})`,
-  }));
+  const options: OptionType[] = shippingOptions?.map(
+    (data: ShippingOption) => ({
+      id: data.id,
+      label: `${data.description} - (${data.price.formatted_with_symbol})`,
+    })
+  );
 
   if (
     shippingCountriesLoading ||
@@ -109,18 +113,18 @@ const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
               <Select
                 fullWidth
                 value={shippingCountry}
-                onChange={(e: any) => {
+                onChange={(e: SelectChangeEvent<string>) => {
                   setShippingCountry(e.target.value);
                 }}
               >
                 {shippingCountries &&
-                  Object.entries(shippingCountries?.countries).map(
-                    ([code, name]: any) => (
-                      <MenuItem key={code} value={code}>
-                        {name}
-                      </MenuItem>
-                    )
-                  )}
+                  Object.entries<CountryCodeType>(
+                    shippingCountries?.countries
+                  ).map(([code, name]) => (
+                    <MenuItem key={code} value={code}>
+                      {typeof name === "string" && name}
+                    </MenuItem>
+                  ))}
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -128,19 +132,19 @@ const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
               <Select
                 fullWidth
                 value={shippingSubDivision}
-                onChange={(e: any) => {
+                onChange={(e: SelectChangeEvent<string>) => {
                   setShippingSubDivision(e.target.value);
                 }}
                 disabled={shippingSubDivisions === undefined ? true : false}
               >
                 {shippingSubDivisions &&
-                  Object.entries(shippingSubDivisions.subdivisions).map(
-                    ([code, name]: any) => (
-                      <MenuItem key={code} value={code}>
-                        {name}
-                      </MenuItem>
-                    )
-                  )}
+                  Object.entries<CountryCodeType>(
+                    shippingSubDivisions.subdivisions
+                  ).map(([code, name]) => (
+                    <MenuItem key={code} value={code}>
+                      {typeof name === "string" && name}
+                    </MenuItem>
+                  ))}
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -148,11 +152,13 @@ const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
               <Select
                 fullWidth
                 value={shippingOption}
-                onChange={(e: any) => setShippingOption(e.target.value)}
+                onChange={(e: SelectChangeEvent<string>) =>
+                  setShippingOption(e.target.value)
+                }
                 disabled={shippingOptions === undefined ? true : false}
               >
                 {options &&
-                  options?.map((option: any) => (
+                  options?.map((option: OptionType) => (
                     <MenuItem key={option.id} value={option.id}>
                       {option.label}
                     </MenuItem>

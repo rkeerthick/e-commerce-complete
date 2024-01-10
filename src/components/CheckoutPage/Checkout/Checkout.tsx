@@ -22,11 +22,12 @@ import { commerce } from "../../../lib/commerce";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 import { setEmptyCart } from "../../../store/productStore";
-import { OrderType } from "../../../types/Order.type";
 import { useNavigate } from "react-router-dom";
 import { ShippingDataType } from "./type";
 import { StateType } from "../../../types/CommonTypes";
 import { CartType } from "../../Cart/type";
+import { OrderSummaryType } from '../orderSummary.type';
+import { OrderType } from "../type";
 
 const steps = ["Shipping address", "Payment details"];
 
@@ -34,7 +35,7 @@ const Checkout = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState<number>(0);
   const [shippingData, setShippingData] = useState<ShippingDataType>();
-  const [order, setOrder] = useState<OrderType>();
+  const [order, setOrder] = useState<OrderSummaryType>();
 
   const navigate = useNavigate();
 
@@ -44,7 +45,7 @@ const Checkout = () => {
 
 
   const {
-    data: token,
+    data: checkoutProducts,
     isFetching,
     isLoading,
   } = useQuery({
@@ -58,7 +59,7 @@ const Checkout = () => {
   const nextStep = () => setActiveStep((oldStep: number) => oldStep + 1);
   const prevStep = () => setActiveStep((oldStep: number) => oldStep - 1);
 
-  const next = (data: any) => {
+  const next = (data: ShippingDataType) => {
     setShippingData(data);
     nextStep();
   };
@@ -72,16 +73,17 @@ const Checkout = () => {
     error: checkoutError,
     isPending: captureCheckoutPending,
   } = useMutation({
-    mutationFn: (data: { tokenId: any; newOrder: any }) =>
+    mutationFn: (data: { tokenId: string; newOrder: OrderType }) =>
       commerce.checkout.capture(data.tokenId, data.newOrder),
-    onSuccess: (data: any) => {
+    onSuccess: (data: OrderSummaryType) => {
+      console.log(data, 'Order capture')
       setOrder(data);
       refreshCartMutation();
       dispatch(setEmptyCart());
     },
   });
 
-  const handleCaptureCheckout = (tokenId: any, newOrder: any) => {
+  const handleCaptureCheckout = (tokenId: string, newOrder: OrderType) => {
     captureCheckoutMutation({ tokenId, newOrder });
   };
   if (isFetching || isLoading) {
@@ -93,10 +95,10 @@ const Checkout = () => {
   }
   const Form = () => {
     return activeStep === 0 ? (
-      <AddressForm checkoutProducts={token} next={next} />
+      <AddressForm checkoutProducts={checkoutProducts} next={next} />
     ) : (
       <PaymentForm
-        checkoutProducts={token}
+        checkoutProducts={checkoutProducts}
         shippingData={shippingData}
         prevStep={prevStep}
         error={checkoutError}

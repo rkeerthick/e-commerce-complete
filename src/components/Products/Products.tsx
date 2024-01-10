@@ -6,14 +6,15 @@ import { MainStyle, ToolbarStyle } from "./styles";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { ProductType } from "./Product/type";
+import { StateType } from "../../types/CommonTypes";
 
 const Products = () => {
   const theme = useTheme();
-  const products: ProductType[] = useSelector(
-    (state: any) => state.Store.products.data
+  const products: ProductType[] | undefined = useSelector(
+    (state: StateType) => state.Store.products?.data
   );
 
-  
+  console.log(products, "products");
 
   return (
     <MainStyle theme={theme}>

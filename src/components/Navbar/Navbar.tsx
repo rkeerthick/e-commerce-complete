@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../../assets/commerce.png";
 import { Grow, Button, imageStyle, AppbarStyled, LogoWrapper } from "./styles";
+import { StateType } from "../../types/CommonTypes";
 
 const Navbar = () => {
   const theme = useTheme();
@@ -15,7 +16,7 @@ const Navbar = () => {
 
   const location = useLocation();
 
-  const cart = useSelector((state: any) => state.Store.cart);
+  const cart = useSelector((state: StateType) => state.Store.cart);
 
   return (
     <>

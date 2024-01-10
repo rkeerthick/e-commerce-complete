@@ -1,7 +1,8 @@
 import React from "react";
 import { Typography, List, ListItem, ListItemText } from "@mui/material";
 
-import { ReviewPropType, LineItemType } from "./type";
+import { ReviewPropType } from "./type";
+import { LineItemType } from "./Checkout/type";
 
 const Review = ({ checkoutProducts }: ReviewPropType) => {
   console.log(checkoutProducts, "Review");

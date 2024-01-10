@@ -1,4 +1,4 @@
-export interface OrderType {
+export interface OrderSummaryType {
   version: string;
   sandbox: boolean;
   id: string;

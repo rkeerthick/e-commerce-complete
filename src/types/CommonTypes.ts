@@ -9,7 +9,7 @@ export interface ProductStoreProps {
 
 export interface StateType {
   Store: {
-    products?: ProductType[];
+    products?: { data: ProductType[], meta: any} | undefined;
     cart?: CartType | undefined;
   };
 }

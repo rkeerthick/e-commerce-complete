@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { Typography, Button, Divider } from "@mui/material";
 import {
   Elements,
@@ -7,7 +7,8 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Review from "./Review";
-import { PaymentFormPropType } from "./type";
+import { ElementConsumerType, OrderType, PaymentFormPropType } from "./type";
+import { Stripe, StripeElements } from "@stripe/stripe-js/types/stripe-js";
 
 const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY || "";
 
@@ -23,10 +24,14 @@ const PaymentForm = ({
   console.log(shippingData, "shipping data");
 
   if (shippingData === undefined) {
-    return <h1>Loading...</h1>
+    return <h1>Loading...</h1>;
   }
 
-  const handleSubmit = async (e: any, elements: any, stripe: any) => {
+  const handleSubmit = async (
+    e: FormEvent<HTMLFormElement>,
+    elements: StripeElements | null,
+    stripe: Stripe | null
+  ) => {
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -42,7 +47,7 @@ const PaymentForm = ({
 
     // if (error) console.log(error);
     // else {
-    const orderData = {
+    const orderData: OrderType = {
       line_items: checkoutProducts.line_items,
       customer: {
         firstname: shippingData.firstName,
@@ -87,8 +92,12 @@ const PaymentForm = ({
       </Typography>
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
-          {({ elements, stripe }: any) => (
-            <form onSubmit={(e: any) => handleSubmit(e, elements, stripe)}>
+          {({ elements, stripe }: ElementConsumerType) => (
+            <form
+              onSubmit={(e: FormEvent<HTMLFormElement>) =>
+                handleSubmit(e, elements, stripe)
+              }
+            >
               <CardElement />
               <br />
               <br />
