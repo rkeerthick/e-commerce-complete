@@ -1,0 +1,22 @@
+{
+    "id": "cart_AYrQlW3vxrlnbR",
+    "created": 1704865219,
+    "updated": 1704865219,
+    "expires": 1707457219,
+    "total_items": 0,
+    "total_unique_items": 0,
+    "subtotal": {
+        "raw": 0,
+        "formatted": "0.00",
+        "formatted_with_symbol": "₹0.00",
+        "formatted_with_code": "0.00 INR"
+    },
+    "hosted_checkout_url": "https://checkout.chec.io/cart/cart_AYrQlW3vxrlnbR",
+    "meta": null,
+    "line_items": [],
+    "currency": {
+        "code": "INR",
+        "symbol": "₹"
+    },
+    "discount": []
+}

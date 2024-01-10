@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ProductType } from "../types/Product.type";
+import { CartType } from "../types/Cart.type";
 
 interface productStoreProps {
-  products: any;
-  cart: any;
+  products: ProductType[];
+  cart: CartType | {};
 }
 
 const initialState: productStoreProps = {
