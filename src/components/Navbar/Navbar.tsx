@@ -1,20 +1,12 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Badge,
-  MenuItem,
-  Menu,
-} from "@mui/material";
+import { Toolbar, IconButton, Badge } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
-
-import logo from "../../assets/commerce.png";
-import { Grow, Button, imageStyle } from "./styles";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import logo from "../../assets/commerce.png";
+import { Grow, Button, imageStyle, AppbarStyled, LogoWrapper } from "./styles";
 
 const Navbar = () => {
   const theme = useTheme();
@@ -25,33 +17,13 @@ const Navbar = () => {
 
   const cart = useSelector((state: any) => state.Store.cart);
 
-  console.log(cart, 'dummy')
-
   return (
     <>
-      <AppBar
-        position="fixed"
-        sx={{
-          boxShadow: "none",
-          borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-          [theme.breakpoints.up("sm")]: {
-            width: `calc(100% - ${0}px)`,
-            marginLeft: 0,
-          },
-        }}
-        color="inherit"
-      >
+      <AppbarStyled theme={theme} position="fixed" color="inherit">
         <Toolbar>
-          <Typography
+          <LogoWrapper
             variant="h6"
             color="inherit"
-            sx={{
-              flexGrow: 1,
-              alignItems: "center",
-              display: "flex",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
             onClick={() => navigate("/")}
           >
             <img
@@ -61,7 +33,7 @@ const Navbar = () => {
               className={imageStyle}
             />
             E-Commerce
-          </Typography>
+          </LogoWrapper>
           <Grow />
 
           {location.pathname === "/" && (
@@ -77,7 +49,7 @@ const Navbar = () => {
             </Button>
           )}
         </Toolbar>
-      </AppBar>
+      </AppbarStyled>
     </>
   );
 };
