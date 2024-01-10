@@ -1,6 +1,7 @@
 import React from "react";
 
 // import Cart from "../../assets/svg/Cart.svg";
+import Cart from "../SVG/Cart";
 import Logo from '../../assets/commerce.png'
 import styled, { keyframes } from "styled-components";
 
@@ -17,7 +18,7 @@ const ShakeImage = keyframes`
 100% { transform: rotate(5deg); } 
 `;
 
-const LoadingImage = styled.img`
+const LoadingImage = styled.div`
   height: 100px;
   width: auto;
   animation: ${ShakeImage} 0.5s linear infinite;
@@ -27,9 +28,9 @@ const Loading = ({ hasLabel, label }: LoadingPropType) => {
   console.log(hasLabel, "haslabel");
   return (
     <>
-      {/* {hasLabel && <Typography variant="h6" gutterBottom>{label}</Typography>}
-      <CircularProgress /> */}
-      <LoadingImage src={Logo} />
+      <LoadingImage>
+        <Cart />
+      </LoadingImage>
     </>
   );
 };

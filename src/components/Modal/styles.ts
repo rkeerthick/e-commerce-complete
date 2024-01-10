@@ -6,8 +6,8 @@ export const OverlayStyled = styled.div({
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: "lightgrey",
-  zIndex: 1000,
+  backgroundColor: "transparent",
+  zIndex: 1,
 });
 
 export const ModalStyled = styled.div({
@@ -15,7 +15,6 @@ export const ModalStyled = styled.div({
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  backgroundColor: "#FFF",
   padding: "50px",
   zIndex: 1000,
   borderRadius: "8px"
