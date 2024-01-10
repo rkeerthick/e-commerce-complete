@@ -11,8 +11,8 @@ export interface ReviewPropType {
 }
 
 export interface AddressFormPropType {
-    token: CheckoutProductsType;
-    next: (data: any) => void;
+  checkoutProducts: CheckoutProductsType;
+  next: (data: any) => void;
 }
 
 export interface PaymentFormPropType {

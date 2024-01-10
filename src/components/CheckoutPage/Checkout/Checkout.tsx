@@ -93,7 +93,7 @@ const Checkout = () => {
   }
   const Form = () => {
     return activeStep === 0 ? (
-      <AddressForm token={token} next={next} />
+      <AddressForm checkoutProducts={token} next={next} />
     ) : (
       <PaymentForm
         checkoutProducts={token}

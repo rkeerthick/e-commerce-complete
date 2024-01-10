@@ -13,11 +13,12 @@ import TextFeild from "./TextFeild";
 import { commerce } from "../../lib/commerce";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { AddressFormPropType } from "./type";
 
-const AddressForm = ({ token, next }: any) => {
-  const [shippingCountry, setShippingCountry] = useState("");
-  const [shippingSubDivision, setShippingSubDivision] = useState("");
-  const [shippingOption, setShippingOption] = useState("");
+const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
+  const [shippingCountry, setShippingCountry] = useState<string>("");
+  const [shippingSubDivision, setShippingSubDivision] = useState<string>("");
+  const [shippingOption, setShippingOption] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -29,7 +30,8 @@ const AddressForm = ({ token, next }: any) => {
     isFetching: shippingCountriesFetching,
   } = useQuery({
     queryKey: ["Fetch Shipping Countries"],
-    queryFn: () => commerce.services.localeListShippingCountries(token.id),
+    queryFn: () =>
+      commerce.services.localeListShippingCountries(checkoutProducts.id),
   });
 
   const {
@@ -50,7 +52,7 @@ const AddressForm = ({ token, next }: any) => {
   } = useQuery({
     queryKey: ["Payment Option"],
     queryFn: () =>
-      commerce.checkout.getShippingOptions(token.id, {
+      commerce.checkout.getShippingOptions(checkoutProducts.id, {
         country: shippingCountry,
         region: shippingSubDivision,
       }),
@@ -160,7 +162,9 @@ const AddressForm = ({ token, next }: any) => {
           </Grid>
           <br />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Button variant="outlined" onClick={() => navigate('/cart')}>Back to cart</Button>
+            <Button variant="outlined" onClick={() => navigate("/cart")}>
+              Back to cart
+            </Button>
             <Button type="submit" color="primary" variant="contained">
               Next
             </Button>
