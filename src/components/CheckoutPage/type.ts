@@ -1,11 +1,27 @@
+import { ShippingDataType } from "./Checkout/type";
+
 export interface TextFeildPropType {
-    name: string;
-    label: string;
-    required: boolean;
+  name: string;
+  label: string;
+  required: boolean;
 }
 
 export interface ReviewPropType {
-  CheckoutProducts: CheckoutProductsType;
+  checkoutProducts: CheckoutProductsType;
+}
+
+export interface AddressFormPropType {
+    token: CheckoutProductsType;
+    next: (data: any) => void;
+}
+
+export interface PaymentFormPropType {
+  checkoutProducts: CheckoutProductsType;
+  shippingData: ShippingDataType | undefined;
+  handleCaptureCheckout: (tokenId: any, newOrder: any) => void;
+  prevStep: () => void;
+    nextStep: () => void;
+    error?: Error | null;
 }
 
 export interface CheckoutProductsType {
