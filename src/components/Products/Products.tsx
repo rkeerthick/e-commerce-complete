@@ -14,8 +14,6 @@ const Products = () => {
     (state: StateType) => state.Store.products?.data
   );
 
-  console.log(products, "products");
-
   return (
     <MainStyle theme={theme}>
       <ToolbarStyle theme={theme} />

@@ -19,6 +19,8 @@ import { useMutation } from "@tanstack/react-query";
 import { CartType } from "./type";
 import { StateType } from "../../types/CommonTypes";
 import { CartItemType } from "./CartItem/type";
+import Modal from "../Modal/Modal";
+import Loading from "../Loading/Loading";
 
 const Cart = () => {
   const theme = useTheme();
@@ -72,10 +74,25 @@ const Cart = () => {
   const handleRemove = (productId: string) => {
     handleRemoveMutation(productId);
   };
-
-  if (cart === undefined || EmptyPending || QuantityPending || RemovePending) {
-    return <Container sx={{ paddingTop: "80px" }}>Loading...</Container>;
+  
+  if (QuantityPending) {
+    return (
+      <Modal>
+        <Loading hasLabel={true} label="Quantity updating..." />
+      </Modal>
+    );
   }
+
+  if (cart === undefined || EmptyPending || RemovePending) {
+    return <Container sx={{ paddingTop: "80px" }}>Loading...</Container>;
+    // console.log('qertyuiopasdfghjklxcvbnmm')
+    // return (
+    //   <Modal>
+    //     <Loading />
+    //   </Modal>
+    // );
+  }
+
 
   const EmptyCart = () => {
     return (

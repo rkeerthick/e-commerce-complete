@@ -1,4 +1,4 @@
 export interface ModalPropType {
-    isOpen: boolean;
+    isOpen?: boolean;
     children: JSX.Element;
 } 

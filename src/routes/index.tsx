@@ -27,7 +27,6 @@ const Routing = () => {
     queryFn: () => commerce.cart.retrieve(),
   });
 
-  // settign cart in store
   cart && dispatch(setCarts(cart));
 
   if (productsLoading || cartLoading || productsFetching) {

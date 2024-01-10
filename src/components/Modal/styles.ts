@@ -6,7 +6,7 @@ export const OverlayStyled = styled.div({
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: "rgba(0, 0, 0, .7)",
+  backgroundColor: "lightgrey",
   zIndex: 1000,
 });
 
@@ -18,4 +18,5 @@ export const ModalStyled = styled.div({
   backgroundColor: "#FFF",
   padding: "50px",
   zIndex: 1000,
+  borderRadius: "8px"
 });

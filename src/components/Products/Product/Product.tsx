@@ -22,48 +22,69 @@ import { useDispatch } from "react-redux";
 import { commerce } from "../../../lib/commerce";
 import { setCarts } from "../../../store/productStore";
 import { ProductPropType } from "./type";
+import { useMutation } from "@tanstack/react-query";
+import Modal from "../../Modal/Modal";
+import Loading from "../../Loading/Loading";
 
 const Product = ({ product }: ProductPropType) => {
   const dispatch = useDispatch();
 
-  const handleAddCart = async (productId: string, quantity: number) => {
-    const response = await commerce.cart.add(productId, quantity);
-    dispatch(setCarts(response));
-  };
+  const { mutate: addCartMutation, isPending: addCartLoading } = useMutation({
+    mutationFn: (data: { productId: string; quantity: number}) =>
+      commerce.cart.add(data.productId, data.quantity),
+    onSuccess: (data: void) => {
+      dispatch(setCarts(data));
+    }
+  });
 
-  return (
-    <Card className={CardStyle}>
-      <ImageContainer>
-        <img src={product.image.url} alt="product" className={CardMediaStyle} />
-      </ImageContainer>
-      <CardContent>
-        <CardContentStyled>
-          <Typography variant="h5" gutterBottom>
-            {product.name}
-          </Typography>
-          <Typography variant="h5" gutterBottom>
-            {product.price.formatted_with_symbol}
-          </Typography>
-        </CardContentStyled>
-        <Typography
-          dangerouslySetInnerHTML={{ __html: product.description }}
-          variant="body2"
-          color="textSecondary"
-        />
-      </CardContent>
-      <CardActions
-        disableSpacing
-        sx={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <IconButton
-          aria-label="Add to card"
-          onClick={() => handleAddCart(product.id, 1)}
+  const handleAddCart = (productId: string, quantity: number) => {
+    addCartMutation({productId, quantity});
+  }
+
+  if (addCartLoading) {
+     return (
+       <Modal>
+         <Loading hasLabel={true} label="Adding to cart..." />
+       </Modal>
+     );
+  }
+    return (
+      <Card className={CardStyle}>
+        <ImageContainer>
+          <img
+            src={product.image.url}
+            alt="product"
+            className={CardMediaStyle}
+          />
+        </ImageContainer>
+        <CardContent>
+          <CardContentStyled>
+            <Typography variant="h5" gutterBottom>
+              {product.name}
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+              {product.price.formatted_with_symbol}
+            </Typography>
+          </CardContentStyled>
+          <Typography
+            dangerouslySetInnerHTML={{ __html: product.description }}
+            variant="body2"
+            color="textSecondary"
+          />
+        </CardContent>
+        <CardActions
+          disableSpacing
+          sx={{ display: "flex", justifyContent: "space-between" }}
         >
-          <AddShoppingCart />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
+          <IconButton
+            aria-label="Add to card"
+            onClick={() => handleAddCart(product.id, 1)}
+          >
+            <AddShoppingCart />
+          </IconButton>
+        </CardActions>
+      </Card>
+    );
 };
 
 export default Product;
