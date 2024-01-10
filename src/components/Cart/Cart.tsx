@@ -28,8 +28,8 @@ const Cart = () => {
 
   const isEmpty = !cart || !cart.line_items.length;
 
-  const { mutate, isPending: EmptyPending } = useMutation({mutationFn: async () => 
-    await commerce.cart.empty(),
+  const { mutate, isPending: EmptyPending } = useMutation({
+    mutationFn: async () => await commerce.cart.empty(),
     onSuccess: (data) => {
       dispatch(setCarts(data));
     },
@@ -39,33 +39,34 @@ const Cart = () => {
     mutate();
   };
 
-   const { mutate: handleQuantityMutation , isPending: QuantityPending} = useMutation({
-     mutationFn: async (data: { productId: string; quantity: number }) =>
-       await commerce.cart.update(data.productId, {
-         quantity: data.quantity,
-       }),
+  const { mutate: handleQuantityMutation, isPending: QuantityPending } =
+    useMutation({
+      mutationFn: async (data: { productId: string; quantity: number }) =>
+        await commerce.cart.update(data.productId, {
+          quantity: data.quantity,
+        }),
 
-     onSuccess: (data: any) => {
-       dispatch(setCarts(data));
-     },
-   });
+      onSuccess: (data: any) => {
+        dispatch(setCarts(data));
+      },
+    });
 
-   const { mutate: handleRemoveMutation , isPending: RemovePending} = useMutation({
-     mutationFn: async (productId: string) =>
-       await commerce.cart.remove(productId),
-     onSuccess: (data: any) => {
-       dispatch(setCarts(data));
-     },
-   });
+  const { mutate: handleRemoveMutation, isPending: RemovePending } =
+    useMutation({
+      mutationFn: async (productId: string) =>
+        await commerce.cart.remove(productId),
+      onSuccess: (data: any) => {
+        dispatch(setCarts(data));
+      },
+    });
 
-   const handleQuantity = (productId: string, quantity: number) => {
-     handleQuantityMutation({ productId, quantity });
-   };
+  const handleQuantity = (productId: string, quantity: number) => {
+    handleQuantityMutation({ productId, quantity });
+  };
 
-   const handleRemove = (productId: string) => {
-     handleRemoveMutation(productId);
-   };
-
+  const handleRemove = (productId: string) => {
+    handleRemoveMutation(productId);
+  };
 
   const EmptyCart = () => {
     return (
@@ -121,7 +122,7 @@ const Cart = () => {
   };
 
   if (EmptyPending || QuantityPending || RemovePending) {
-    return <Container sx={{paddingTop: "80px"}}>Loading...</Container>
+    return <Container sx={{ paddingTop: "80px" }}>Loading...</Container>;
   }
 
   return (
@@ -132,11 +133,7 @@ const Cart = () => {
           Your Shopping Cart
         </Typography>
       </Title>
-      {isEmpty ? (
-        <EmptyCart />
-      ) : (
-          <FilledCart/>
-      )}
+      {isEmpty ? <EmptyCart /> : <FilledCart />}
     </Container>
   );
 };
