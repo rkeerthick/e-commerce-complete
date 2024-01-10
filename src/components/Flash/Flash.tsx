@@ -1,15 +1,14 @@
-import React from 'react'
-import Logo from '../../assets/commerce.png'
-import { FlashImage, FlashStyled } from './Styled'
-import { LinearProgress } from '@mui/material'
+import React from "react";
+import Logo from "../../assets/commerce.png";
+import { FlashImage, FlashStyled, LinearProgressStyled } from "./Styled";
 
 const Flash = () => {
-    return (
-        <FlashStyled>
-            <FlashImage src={Logo} alt="flash" />
-            <LinearProgress style={{position: "relative", top: '200px'}} />
-      </FlashStyled>
-  )
-}
+  return (
+    <FlashStyled>
+      <FlashImage src={Logo} alt="flash" />
+      <LinearProgressStyled />
+    </FlashStyled>
+  );
+};
 
-export default Flash
+export default Flash;
