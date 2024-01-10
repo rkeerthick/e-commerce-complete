@@ -2,7 +2,6 @@ import React from "react";
 
 import {
   Card,
-  CardMedia,
   CardContent,
   CardActions,
   IconButton,
@@ -10,7 +9,6 @@ import {
 } from "@mui/material";
 
 import { AddShoppingCart } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
 
 import {
   CardMediaStyle,
@@ -19,20 +17,19 @@ import {
   ImageContainer,
 } from "./styles";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { commerce } from "../../../lib/commerce";
 import { setCarts } from "../../../store/productStore";
+import { ProductPropType } from "./type";
 
-const Product = ({ product }: any) => {
+const Product = ({ product }: ProductPropType) => {
   const dispatch = useDispatch();
 
-  const handleAddCart = async (productId: any, quantity: any) => {
+  const handleAddCart = async (productId: string, quantity: number) => {
     const response = await commerce.cart.add(productId, quantity);
     dispatch(setCarts(response));
   };
-
-  // const cart = useSelector((state: any) => state.Store.cart.data)
 
   return (
     <Card className={CardStyle}>
