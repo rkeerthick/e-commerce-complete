@@ -1,5 +1,5 @@
 import React, { FormEvent } from "react";
-import { Typography, Button, Divider } from "@mui/material";
+import { Typography, Button, Divider, CircularProgress } from "@mui/material";
 import {
   Elements,
   CardElement,
@@ -9,6 +9,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Review from "./Review";
 import { ElementConsumerType, OrderType, PaymentFormPropType } from "./type";
 import { Stripe, StripeElements } from "@stripe/stripe-js/types/stripe-js";
+import Modal from "../Modal/Modal";
 
 const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY || "";
 
@@ -24,7 +25,11 @@ const PaymentForm = ({
   console.log(shippingData, "shipping data");
 
   if (shippingData === undefined) {
-    return <h1>Loading...</h1>;
+    return (
+      <Modal>
+        <CircularProgress />
+      </Modal>
+    );
   }
 
   const handleSubmit = async (

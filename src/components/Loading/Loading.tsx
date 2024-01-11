@@ -2,12 +2,12 @@ import React from "react";
 
 // import Cart from "../../assets/svg/Cart.svg";
 import Cart from "../SVG/Cart";
-import Logo from '../../assets/commerce.png'
 import styled, { keyframes } from "styled-components";
 
 interface LoadingPropType {
   label?: string | undefined;
   hasLabel?: boolean | undefined;
+  image?: JSX.Element;
 }
 
 const ShakeImage = keyframes`
@@ -19,18 +19,15 @@ const ShakeImage = keyframes`
 `;
 
 const LoadingImage = styled.div`
-  height: 100px;
   width: auto;
   animation: ${ShakeImage} 0.5s linear infinite;
 `;
 
-const Loading = ({ hasLabel, label }: LoadingPropType) => {
+const Loading = ({ hasLabel, label, image = <Cart width="50px" height="50px" /> }: LoadingPropType) => {
   console.log(hasLabel, "haslabel");
   return (
     <>
-      <LoadingImage>
-        <Cart />
-      </LoadingImage>
+      <LoadingImage>{image}</LoadingImage>
     </>
   );
 };

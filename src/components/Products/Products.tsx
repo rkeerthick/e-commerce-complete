@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@mui/material";
 import Product from "./Product/Product";
 
@@ -7,12 +7,25 @@ import { useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { ProductType } from "./Product/type";
 import { StateType } from "../../types/CommonTypes";
+import { useLocation } from "react-router-dom";
+import Flash from "../Flash/Flash";
 
-const Products = () => {
+const Products = ({ cartLoading, fetchCart }: any) => {
   const theme = useTheme();
+  const location = useLocation();
   const products: ProductType[] | undefined = useSelector(
     (state: StateType) => state.Store.products?.data
   );
+
+  useEffect(() => {
+    if (location?.pathname === "/") {
+      fetchCart();
+    }
+  }, [location?.pathname]);
+
+  if (cartLoading) {
+    return <Flash />;
+  }
 
   return (
     <MainStyle theme={theme}>

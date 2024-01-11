@@ -6,7 +6,7 @@ export const OverlayStyled = styled.div({
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: "transparent",
+  backgroundColor: "white",
   zIndex: 1,
 });
 

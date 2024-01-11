@@ -26,8 +26,11 @@ import { useNavigate } from "react-router-dom";
 import { ShippingDataType } from "./type";
 import { StateType } from "../../../types/CommonTypes";
 import { CartType } from "../../Cart/type";
-import { OrderSummaryType } from '../orderSummary.type';
+import { OrderSummaryType } from "../orderSummary.type";
 import { OrderType } from "../type";
+import Modal from "../../Modal/Modal";
+import Loading from "../../Loading/Loading";
+import Payment from "../../SVG/Payment";
 
 const steps = ["Shipping address", "Payment details"];
 
@@ -41,8 +44,9 @@ const Checkout = () => {
 
   const dispatch = useDispatch();
 
-  const cart: CartType | undefined = useSelector((state: StateType) => state.Store.cart);
-
+  const cart: CartType | undefined = useSelector(
+    (state: StateType) => state.Store.cart
+  );
 
   const {
     data: checkoutProducts,
@@ -76,7 +80,7 @@ const Checkout = () => {
     mutationFn: (data: { tokenId: string; newOrder: OrderType }) =>
       commerce.checkout.capture(data.tokenId, data.newOrder),
     onSuccess: (data: OrderSummaryType) => {
-      console.log(data, 'Order capture')
+      console.log(data, "Order capture");
       setOrder(data);
       refreshCartMutation();
       dispatch(setEmptyCart());
@@ -87,11 +91,20 @@ const Checkout = () => {
     captureCheckoutMutation({ tokenId, newOrder });
   };
   if (isFetching || isLoading) {
-    return <h1 style={{ paddingTop: "80px" }}>Loading....</h1>;
+    return (
+      <Modal>
+        <CircularProgress />
+      </Modal>
+    );
   }
 
   if (captureCheckoutPending) {
-    return <h1 style={{ paddingTop: "80px" }}>Checkout Processing....</h1>;
+    // return <h1 style={{ paddingTop: "80px" }}>Checkout Processing....</h1>;
+    return (
+      <Modal>
+        <Loading image={<Payment />} />
+      </Modal>
+    );
   }
   const Form = () => {
     return activeStep === 0 ? (

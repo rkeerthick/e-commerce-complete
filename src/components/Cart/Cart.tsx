@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Grid, Container, Typography } from "@mui/material";
+import { Grid, Container, Typography, CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   StyledToolbar,
@@ -21,6 +21,7 @@ import { StateType } from "../../types/CommonTypes";
 import { CartItemType } from "./CartItem/type";
 import Modal from "../Modal/Modal";
 import Loading from "../Loading/Loading";
+import Trash from "../SVG/Trash";
 
 const Cart = () => {
   const theme = useTheme();
@@ -78,19 +79,25 @@ const Cart = () => {
   if (QuantityPending) {
     return (
       <Modal>
-        <Loading hasLabel={true} label="Quantity updating..." />
+        <Loading />
       </Modal>
     );
   }
 
-  if (cart === undefined || EmptyPending || RemovePending) {
-    return <Container sx={{ paddingTop: "80px" }}>Loading...</Container>;
-    // console.log('qertyuiopasdfghjklxcvbnmm')
-    // return (
-    //   <Modal>
-    //     <Loading />
-    //   </Modal>
-    // );
+  if (RemovePending || EmptyPending) {
+    return (
+      <Modal>
+        <Loading image={<Trash width="50px" height="50px" />} />
+      </Modal>
+    );
+  }
+
+  if (cart === undefined) {
+    return (
+      <Modal>
+        <CircularProgress />
+      </Modal>
+    );
   }
 
 

@@ -44,7 +44,7 @@ const Product = ({ product }: ProductPropType) => {
   if (addCartLoading) {
      return (
        <Modal>
-         <Loading hasLabel={true} label="Adding to cart..." />
+         <Loading/>
        </Modal>
      );
   }

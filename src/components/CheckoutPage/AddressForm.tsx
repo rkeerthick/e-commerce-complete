@@ -7,6 +7,7 @@ import {
   Grid,
   Typography,
   SelectChangeEvent,
+  CircularProgress,
 } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 
@@ -20,6 +21,7 @@ import {
   OptionType,
   ShippingOption,
 } from "./type";
+import Modal from "../Modal/Modal";
 
 const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
   const [shippingCountry, setShippingCountry] = useState<string>("");
@@ -86,7 +88,11 @@ const AddressForm = ({ checkoutProducts, next }: AddressFormPropType) => {
     shippingSubDivisionsLoading ||
     shippingSubDivisionsFetching
   ) {
-    return <>Loading..</>;
+    return (
+      <Modal>
+        <CircularProgress />
+      </Modal>
+    );
   }
 
   return (
